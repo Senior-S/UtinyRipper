@@ -326,6 +326,8 @@ namespace uTinyRipper.Converters
 
 				if (m_options.KeepAssetBundleContentPath)
 				{
+					if (assetPath.EndsWith("/animation")) assetPath = assetPath.Remove(assetPath.LastIndexOf("/animation"), 10) + "/" + asset.TryGetName();
+					if (assetPath.EndsWith("animation")) assetPath = assetPath.Remove(assetPath.LastIndexOf("animation"), 9) + asset.TryGetName();
 					m_pathAssets.Add(asset, new ProjectAssetPath(string.Empty, assetPath));
 				}
 				else
@@ -338,6 +340,8 @@ namespace uTinyRipper.Converters
 					{
 						assetPath = assetPath.Substring(bundleDirectory.Length);
 					}
+					if (assetPath.EndsWith("/animation")) assetPath = assetPath.Remove(assetPath.LastIndexOf("/animation"), 10) + "/" + asset.TryGetName();
+					if (assetPath.EndsWith("animation")) assetPath = assetPath.Remove(assetPath.LastIndexOf("animation"), 9) + asset.TryGetName();
 					m_pathAssets.Add(asset, new ProjectAssetPath(directory, assetPath));
 				}
 			}
